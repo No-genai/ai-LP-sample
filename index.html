@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング学習コミュニティ | CodeAI</title>
+    <style>
+        :root {
+            --primary-color: #f57c00; /* Orange */
+            --primary-hover-color: #d87000; /* Darker Orange */
+            --secondary-color: #ffc107; /* Amber/Yellow */
+            --background-color: #fdfaf6;
+            --text-color: #333;
+            --card-bg-color: #ffffff;
+            --footer-bg-color: #23272a;
+            --footer-text-color: #f0f2f5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative; /* Ensure container content is accessible */
+            z-index: 2;
+        }
+        header {
+            position: relative;
+            text-align: center;
+            padding: 120px 20px;
+            background: url('header-background.png') no-repeat center center/cover;
+            color: white;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+        header h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+        header p {
+            font-size: 1.3em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 18px 36px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+        }
+        .cta-button:hover {
+            background-color: var(--primary-hover-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 124, 0, 0.6);
+        }
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section:nth-child(even) {
+            background-color: var(--card-bg-color);
+        }
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        .feature-card {
+            background: var(--card-bg-color);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+        .feature-card .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .target-list {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        .target-list li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f57c00"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat left center;
+            background-size: 22px;
+            padding-left: 35px;
+            margin-bottom: 18px;
+            font-size: 1.2em;
+        }
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .step {
+            max-width: 220px;
+        }
+        .step .number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-color);
+            background-color: #fff8e1; /* Light yellow/orange */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 15px rgba(245, 124, 0, 0.3);
+        }
+        footer {
+            background-color: var(--footer-bg-color);
+            color: var(--footer-text-color);
+            text-align: center;
+            padding: 40px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>未来を創る、AIプログラミングの世界へ。</h1>
+            <p>初心者から経験者まで、仲間と共に学ぶAI開発コミュニティ。最新技術をキャッチアップし、あなたのアイデアを形にしよう。</p>
+            <a href="https://note.com/genai_mama/n/nbd25f6566002" target="_blank" rel="noopener noreferrer" class="cta-button">今すぐDiscordに参加する</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>このコミュニティで得られること</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">💡</div>
+                        <h3>最新情報の共有</h3>
+                        <p>論文や技術ニュースなど、移り変わりの速いAI業界の最新トレンドをメンバー同士で共有し、議論できます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🚀</div>
+                        <h3>実践的なプロジェクト</h3>
+                        <p>個人やチームで開発プロジェクトを企画・実行。学んだ知識をアウトプットし、ポートフォリオを作成できます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💬</div>
+                        <h3>Q&Aとコードレビュー</h3>
+                        <p>学習中の疑問やエラーを気軽に質問。経験豊富なメンバーからコードレビューを受け、スキルアップできます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>こんな方におすすめ</h2>
+                <ul class="target-list">
+                    <li>AIプログラミングを始めたい初心者の方</li>
+                    <li>独学に限界を感じている方</li>
+                    <li>最新のAI技術トレンドを追いたい開発者の方</li>
+                    <li>一緒にプロジェクトを進める仲間を見つけたい方</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>参加は簡単3ステップ</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="number">1</div>
+                        <h4>ボタンをクリック</h4>
+                        <p>下の参加ボタンから招待リンクへ進みます。</p>
+                    </div>
+                    <div class="step">
+                        <div class="number">2</div>
+                        <h4>Discordに参加</h4>
+                        <p>招待を受けてコミュニティサーバーに参加します。</p>
+                    </div>
+                    <div class="step">
+                        <div class="number">3</div>
+                        <h4>学習スタート！</h4>
+                        <p>自己紹介チャンネルで挨拶し、交流を始めましょう！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: #fff8e1;">
+            <div class="container">
+                <h2>さあ、AI開発の第一歩を踏み出そう</h2>
+                <p style="max-width: 600px; margin: 0 auto 30px;">あなたの参加をコミュニティメンバー一同、心からお待ちしています。</p>
+                <a href="https://note.com/genai_mama/n/nbd25f6566002" target="_blank" rel="noopener noreferrer" class="cta-button">無料でコミュニティに参加する</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CodeAI Community. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
